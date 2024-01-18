@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import ToggleCreateAllCards from './ToggleCreateAllCards';
 import { CardModel } from '../services/models';
-import CardComponent from './Card';
+import CardComponent from './CardComponent';
 import Footer from './Footer';
 import EditPopup from './EditPopup';
 import {
@@ -18,6 +18,8 @@ const MainPage: React.FC<MainPageProps> = () => {
   const [cards, setCards] = useState<CardModel[]>([]);
   const [isEditPopupOpen, setEditPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState<CardModel | null>(null);
+  const [buttonsClicked, setButtonsClicked] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -29,16 +31,19 @@ const MainPage: React.FC<MainPageProps> = () => {
   }, []);
 
   const openEditPopup = (card: CardModel) => {
+    setButtonsClicked(true);
     setSelectedCard(card);
     setEditPopupOpen(true);
   };
 
   const handleUpdateCard = async (updatedCard: CardModel) => {
+    console.log(buttonsClicked);
+    setButtonsClicked(true);
     try {
       await updateCard(
         updatedCard.id,
         updatedCard.question,
-        updatedCard.definition,
+        updatedCard.answer,
         updatedCard.category,
       );
 
@@ -54,7 +59,17 @@ const MainPage: React.FC<MainPageProps> = () => {
     }
   };
 
+  const handleInputChange = (value: string) => {
+    setInputValue(value);
+  };
+
+  const handleClickCard = (card: CardModel) => {
+    console.log('barev', card.answer);
+    setButtonsClicked(true);
+  };
+
   const handleDeleteCard = async (id: number) => {
+    setButtonsClicked(true);
     try {
       await deleteCard(id);
 
@@ -71,15 +86,11 @@ const MainPage: React.FC<MainPageProps> = () => {
 
   const handleCreateCard = async (
     question: string,
-    definition: string,
+    answer: string,
     category: string,
   ) => {
     try {
-      const newCard: CardModel = await createCard(
-        question,
-        definition,
-        category,
-      );
+      const newCard: CardModel = await createCard(question, answer, category);
       setCards((prevCards) => [...prevCards, newCard]);
     } catch (error) {
       console.error('Error creating card:', error);
@@ -90,18 +101,25 @@ const MainPage: React.FC<MainPageProps> = () => {
     <div className="main-page-ctn">
       <Header />
       <div className="main-page-body">
-        <ToggleCreateAllCards onCreate={handleCreateCard} />
+        <ToggleCreateAllCards
+          onCreate={handleCreateCard}
+          onClose={() => setEditPopupOpen(false)}
+        />
         <h2 className="main-page-text">My Words</h2>
         {cards.map((card) => (
           <CardComponent
             key={card.id}
             card={card}
-            onEdit={() => openEditPopup(card)}
+            inputValue={inputValue}
+            onInputChange={(value) => handleInputChange(value)}
+            onEdit={() => {
+              openEditPopup(card);
+            }}
             onDelete={() => handleDeleteCard(card.id)}
+            onCardClick={() => handleClickCard(card)}
           />
         ))}
       </div>
-      <Footer />
       {isEditPopupOpen && selectedCard && (
         <EditPopup
           card={selectedCard}
@@ -109,6 +127,7 @@ const MainPage: React.FC<MainPageProps> = () => {
           onUpdate={handleUpdateCard}
         />
       )}
+      <Footer />
     </div>
   );
 };
