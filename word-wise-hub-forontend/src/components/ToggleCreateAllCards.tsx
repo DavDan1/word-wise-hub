@@ -3,10 +3,12 @@ import '../style/ToggleCreateAllCards.css';
 
 interface ToggleCreateAllCardsProps {
   onCreate: (word: string, definition: string, category: string) => void;
+  onClose: () => void;
 }
 
 const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
   onCreate,
+  onClose,
 }) => {
   const [isCreateMode, setCreateMode] = useState(false);
   const [newWord, setNewWord] = useState('');
@@ -28,6 +30,11 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
     setNewDefinition('');
     setNewCategory('');
     setCreateMode(false);
+  };
+
+  const handleCancel = () => {
+    setCreateMode(false);
+    onClose(); 
   };
 
   return (
@@ -53,24 +60,27 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
 
       {isCreateMode && (
         <div className="create-card-form">
-          <label htmlFor="newWord">Word:</label>
+          <label htmlFor="newWord"></label>
           <input
+            placeholder="Question"
             type="text"
             id="newWord"
             value={newWord}
             onChange={(e) => setNewWord(e.target.value)}
           />
 
-          <label htmlFor="newDefinition">Definition:</label>
+          <label htmlFor="newDefinition"></label>
           <input
+            placeholder="Definition"
             type="text"
             id="newDefinition"
             value={newDefinition}
             onChange={(e) => setNewDefinition(e.target.value)}
           />
 
-          <label htmlFor="newCategory">Category:</label>
+          <label htmlFor="newCategory"></label>
           <input
+            placeholder="Category"
             type="text"
             id="newCategory"
             value={newCategory}
@@ -78,6 +88,7 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
           />
 
           <button onClick={handleCreate}>Create Card</button>
+          <button onClick={handleCancel}>Cancel</button>
         </div>
       )}
 
