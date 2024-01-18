@@ -1,5 +1,7 @@
 .cards-ctn {
   background-color: #e8e8e8;
+  margin: 10px;
+  border-radius: 15px;
 }
 
 .word-ctn {
