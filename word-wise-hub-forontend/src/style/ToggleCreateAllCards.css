@@ -1,0 +1,19 @@
+.toggle-container {
+  margin-top: 1rem;
+}
+
+.toggle-btn-active {
+  background-color: #5db075;
+  color: #ffffff;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.toggle-btn-inactive {
+  background-color: #e8e8e8;
+  color: #bdbdbd;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
