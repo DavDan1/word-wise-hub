@@ -13,8 +13,8 @@
 
 .edit-btn,
 .delete-btn {
-  padding: 0.5rem;
-  margin-left: 0.5rem;
+  border: 0;
+  background: 0;
   cursor: pointer;
 }
 
@@ -23,5 +23,17 @@
 }
 
 .delete-btn {
-  color: #ff3333;
+  color: #78a816;
+}
+
+.question-ctn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.answer-input {
+  text-align: center;
+  height: 40px;
 }
