@@ -1,71 +1,101 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
 using Model;
 
-[ApiController]
-[Route("api/cards")]
-public class CardController : ControllerBase
+namespace YourNamespace
 {
-  private readonly CardDbContext _context;
+  [ApiController]
+  [Route("api/cards")]
+  public class CardController : ControllerBase
+  {
+    private readonly CardDbContext _context;
 
-  public CardController(CardDbContext context)
-  {
-    _context = context;
-  }
-
-  [HttpGet]
-  public async Task<ActionResult<IEnumerable<Card>>> GetAllCards()
-  {
-    return await _context.Cards.ToListAsync();
-  }
-  [HttpPost]
-  public async Task<ActionResult<Card>> CreateCard(Card card)
-  {
-    _context.Cards.Add(card);
-    await _context.SaveChangesAsync();
-    return CreatedAtAction(nameof(GetAllCards), new { }, card);
-  }
-
-  [HttpPut("{id}")]
-  public async Task<IActionResult> UpdateCard(int id, Card card)
-  {
-    if (id != card.Id)
+    public CardController(CardDbContext context)
     {
-      return BadRequest();
+      _context = context;
     }
 
-    _context.Entry(card).State = EntityState.Modified;
-
-    try
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Card>>> GetAllCards()
     {
-      await _context.SaveChangesAsync();
+      try
+      {
+        var cards = await _context.Cards.ToListAsync();
+        return Ok(cards);
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, $"Internal Server Error: {ex.Message}");
+      }
     }
-    catch (DbUpdateConcurrencyException)
+
+    [HttpPost]
+    public async Task<ActionResult<Card>> CreateCard(Card card)
     {
-      if (!_context.Cards.Any(c => c.Id == id))
+      try
+      {
+        _context.Cards.Add(card);
+        await _context.SaveChangesAsync();
+        return CreatedAtAction(nameof(GetAllCards), new { }, card);
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, $"Internal Server Error: {ex.Message}");
+      }
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateCard(int id, UpdateCardDto updateCardDto)
+    {
+      var existingCard = await _context.Cards.FindAsync(id);
+
+      if (existingCard == null)
       {
         return NotFound();
       }
-      throw;
+      existingCard.Question = updateCardDto.Question ?? existingCard.Question;
+      existingCard.Answer = updateCardDto.Answer ?? existingCard.Answer;
+      existingCard.Category = updateCardDto.Category ?? existingCard.Category;
+
+      _context.Entry(existingCard).State = EntityState.Modified;
+
+      try
+      {
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!_context.Cards.Any(c => c.Id == id))
+        {
+          return NotFound();
+        }
+        throw;
+      }
+
+      return NoContent();
     }
 
-    return NoContent();
-  }
-
-  [HttpDelete("{id}")]
-  public async Task<IActionResult> DeleteCard(int id)
-  {
-    var card = await _context.Cards.FindAsync(id);
-
-    if (card == null)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteCard(int id)
     {
-      return NotFound();
+      try
+      {
+        var card = await _context.Cards.FindAsync(id);
+
+        if (card == null)
+        {
+          return NotFound();
+        }
+
+        _context.Cards.Remove(card);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, $"Internal Server Error: {ex.Message}");
+      }
     }
-
-    _context.Cards.Remove(card);
-    await _context.SaveChangesAsync();
-
-    return NoContent();
   }
 }
