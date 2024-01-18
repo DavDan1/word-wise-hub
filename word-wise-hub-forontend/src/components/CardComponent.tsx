@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CardModel } from '../services/models';
 import '../style/Card.css';
+import DeleteConfirmationPopup from './DeleteConfirmationPopup';
 
 interface CardProps {
   card: CardModel;
@@ -22,6 +23,8 @@ const CardComponent: React.FC<CardProps> = ({
   const contentToDisplay = card.isEditing ? card.editedWord : card.question;
 
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
+  const [showDeleteConfirmation, setShowDeleteConfirmation] =
+    useState<boolean>(false);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleInputValueChange = (event: any) => {
@@ -44,6 +47,19 @@ const CardComponent: React.FC<CardProps> = ({
     setIsAnswerCorrect(isCorrect);
 
     onCardClick(card, inputValue);
+  };
+
+  const handleDeleteClick = () => {
+    setShowDeleteConfirmation(true);
+  };
+
+  const handleCancelDelete = () => {
+    setShowDeleteConfirmation(false);
+  };
+
+  const handleConfirmDelete = () => {
+    onDelete(card.id);
+    setShowDeleteConfirmation(false);
   };
 
   return (
@@ -76,10 +92,16 @@ const CardComponent: React.FC<CardProps> = ({
             style={{ width: '70%', padding: '10px', cursor: 'pointer' }}
           />
         </div>
-        <button className="delete-btn" onClick={() => onDelete(card.id)}>
+        <button className="delete-btn" onClick={handleDeleteClick}>
           <img src={'../../public/delete.svg'} alt="SVG Image" />
         </button>
       </div>
+      {showDeleteConfirmation && (
+        <DeleteConfirmationPopup
+          onCancel={handleCancelDelete}
+          onConfirm={handleConfirmDelete}
+        />
+      )}
     </div>
   );
 };
