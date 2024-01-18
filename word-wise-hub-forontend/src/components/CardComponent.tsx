@@ -1,4 +1,3 @@
-// CardComponent.tsx
 import React, { useState } from 'react';
 import { CardModel } from '../services/models';
 import '../style/Card.css';
