@@ -7,5 +7,4 @@ export interface CardModel {
   question: string;
   answer: string;
   category: string;
-  definition: string;
 }
