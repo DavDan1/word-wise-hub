@@ -1,0 +1,25 @@
+.cards-ctn {
+  background-color: #e8e8e8;
+}
+
+.word-ctn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.edit-btn {
+  color: #0066cc;
+}
+
+.delete-btn {
+  color: #ff3333;
+}
