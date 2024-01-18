@@ -1,4 +1,7 @@
-.header-container {
+.header-ctn {
+  display: flex;
+  justify-content: center;
   background-color: #5db075;
   color: #ffffff;
+  height: 120px;
 }
