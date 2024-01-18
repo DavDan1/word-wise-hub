@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from './Button';
 import { CardModel } from '../services/models';
 import { updateCard, createCard } from '../services/apiServices';
+import '../style/EditPopup.css';
 
 interface EditPopupProps {
   card: CardModel | null;
@@ -12,7 +13,7 @@ interface EditPopupProps {
 const EditPopup: React.FC<EditPopupProps> = ({ card, onClose, onUpdate }) => {
   const [editedWord, setEditedWord] = useState(card?.question || '');
   const [editedDefinition, setEditedDefinition] = useState(
-    card?.definition || '',
+    card?.answer || '',
   );
   const [editedCategory, setEditedCategory] = useState(card?.category || '');
 
@@ -22,7 +23,7 @@ const EditPopup: React.FC<EditPopupProps> = ({ card, onClose, onUpdate }) => {
       onUpdate({
         ...card,
         question: editedWord,
-        definition: editedDefinition,
+        answer: editedDefinition,
         category: editedCategory,
       });
     } else {
@@ -35,24 +36,24 @@ const EditPopup: React.FC<EditPopupProps> = ({ card, onClose, onUpdate }) => {
   return (
     <div className="edit-popup">
       <label>
-        Question:
         <input
+          placeholder="Question"
           type="text"
           value={editedWord}
           onChange={(e) => setEditedWord(e.target.value)}
         />
       </label>
       <label>
-        Definition:
         <input
+          placeholder="Definition"
           type="text"
           value={editedDefinition}
           onChange={(e) => setEditedDefinition(e.target.value)}
         />
       </label>
       <label>
-        Category:
         <input
+          placeholder="Category"
           type="text"
           value={editedCategory}
           onChange={(e) => setEditedCategory(e.target.value)}
