@@ -1,8 +1,9 @@
 import React from 'react';
-import ToggleCreateAllCards from '../components/ToggleCreateAllCards';
-import Card from '../components/Card';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import '../style/MainPage.css';
+import Header from './Header';
+import ToggleCreateAllCards from './ToggleCreateAllCards';
+import Card from './Card';
+import Footer from './Footer';
 
 const MainPage: React.FC = () => {
   return (
