@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 interface PopupProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (word: string, definition: string) => void;
+  onSave: (word: string, answer: string) => void;
   initialWord?: string;
   initialDefinition?: string;
 }
@@ -16,10 +16,10 @@ const Popup: React.FC<PopupProps> = ({
   initialDefinition = '',
 }) => {
   const [word, setWord] = useState(initialWord);
-  const [definition, setDefinition] = useState(initialDefinition);
+  const [answer, setDefinition] = useState(initialDefinition);
 
   const handleSave = () => {
-    onSave(word, definition);
+    onSave(word, answer);
     onClose();
   };
 
@@ -39,7 +39,7 @@ const Popup: React.FC<PopupProps> = ({
           <input
             type="text"
             id="definition"
-            value={definition}
+            value={answer}
             onChange={(e) => setDefinition(e.target.value)}
           />
           <div className="popup-buttons">
