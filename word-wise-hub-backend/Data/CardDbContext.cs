@@ -10,6 +10,11 @@ public class CardDbContext : DbContext
   {
   }
 
+  protected override void OnModelCreating(ModelBuilder modelBuilder)
+  {
+    modelBuilder.Entity<Card>().HasKey(c => c.Id);
+  }
+
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   {
     optionsBuilder.UseSqlServer(optionsBuilder.Options.FindExtension<SqlServerOptionsExtension>().ConnectionString, options =>
