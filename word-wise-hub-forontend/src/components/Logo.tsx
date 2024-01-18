@@ -1,12 +1,11 @@
 import React from 'react';
+import logo from '../../public/wordwisehub-high-resolution-logo-transparent.png';
+import '../style/Logo.css';
 
 const Logo: React.FC = () => {
   return (
     <div className="logo-ctn">
-      <div>
-        <h2 className="username-text">Guest</h2>
-        <p className="welcome-message">Welcome back!</p>
-      </div>
+      <img src={logo} alt="Logo" className="logo-image" />
     </div>
   );
 };
