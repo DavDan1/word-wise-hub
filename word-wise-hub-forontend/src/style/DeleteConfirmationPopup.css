@@ -3,6 +3,7 @@
   flex-direction: column-reverse;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .delete-confirmation-popup-btn {
@@ -12,8 +13,13 @@
   width: 80px;
   height: 30px;
   cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .delete-confirmation-popup p {
   color: #f39c12; /* Mild warning color */
+}
+.edit-popup-save,
+.edit-popup-cancel {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
