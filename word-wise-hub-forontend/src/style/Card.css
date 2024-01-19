@@ -1,7 +1,8 @@
 .cards-ctn {
   background-color: #e8e8e8;
-  margin: 10px;
+  margin: 20px auto;
   border-radius: 15px;
+  width: 80%;
 }
 
 .word-ctn {
@@ -19,6 +20,18 @@
   cursor: pointer;
 }
 
+.answer-btn {
+  margin-top: 10px;
+  background-color: #5db075;
+  color: #ffffff;
+  border: 0;
+  border-radius: 10px;
+  margin-top: 5px;
+  width: 90px;
+  height: 40px;
+  cursor: pointer;
+}
+
 .edit-btn {
   color: #0066cc;
 }
@@ -28,6 +41,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: 10px;
 }
 
 .answer-input {
@@ -35,6 +49,7 @@
   border-radius: 10px;
   text-align: center;
   height: 40px;
+  margin-bottom: 5px;
 }
 
 .delete-edit {
