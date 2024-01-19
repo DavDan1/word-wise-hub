@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import Button from './Button';
 import { CardModel } from '../services/models';
@@ -15,6 +15,26 @@ const EditPopup: React.FC<EditPopupProps> = ({ card, onClose, onUpdate }) => {
   const [editedWord, setEditedWord] = useState(card?.question || '');
   const [editedDefinition, setEditedDefinition] = useState(card?.answer || '');
   const [editedCategory, setEditedCategory] = useState(card?.category || '');
+
+  const popupRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        popupRef.current &&
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        !(popupRef.current as any).contains(event.target)
+      ) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [onClose]);
 
   const handleSave = async () => {
     if (card?.id) {
@@ -34,7 +54,7 @@ const EditPopup: React.FC<EditPopupProps> = ({ card, onClose, onUpdate }) => {
   };
 
   return (
-    <div className="edit-popup">
+    <div className="edit-popup" ref={popupRef}>
       <label>
         <input
           placeholder="Question"
@@ -62,7 +82,7 @@ const EditPopup: React.FC<EditPopupProps> = ({ card, onClose, onUpdate }) => {
       <Button className="edit-popup-save" onClick={handleSave}>
         Save
       </Button>
-      <Button onClick={onClose}>Cancel</Button>
+      <Button className="edit-popup-cancel" onClick={onClose}>Cancel</Button>
     </div>
   );
 };
