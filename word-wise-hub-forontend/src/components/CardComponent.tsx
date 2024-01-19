@@ -65,9 +65,6 @@ const CardComponent: React.FC<CardProps> = ({
   return (
     <div className="cards-ctn">
       <div className="word-ctn">
-        <button className="edit-btn" onClick={() => onEdit(card)}>
-          <img src={'../../public/pencil.svg'} alt="SVG Image" />
-        </button>
         <div
           className={`question-ctn ${
             isAnswerCorrect !== null
@@ -92,9 +89,14 @@ const CardComponent: React.FC<CardProps> = ({
             style={{ width: '70%', padding: '10px', cursor: 'pointer' }}
           />
         </div>
-        <button className="delete-btn" onClick={handleDeleteClick}>
-          <img src={'../../public/delete.svg'} alt="SVG Image" />
-        </button>
+        <div className='delete-edit'>
+          <button className="edit-btn" onClick={() => onEdit(card)}>
+            <img src={'../../public/pencil.svg'} alt="SVG Image" />
+          </button>
+          <button className="delete-btn" onClick={handleDeleteClick}>
+            <img src={'../../public/delete.svg'} alt="SVG Image" />
+          </button>
+        </div>
       </div>
       {showDeleteConfirmation && (
         <DeleteConfirmationPopup
