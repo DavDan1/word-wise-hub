@@ -3,7 +3,6 @@ import Header from './Header';
 import ToggleCreateAllCards from './ToggleCreateAllCards';
 import { CardModel } from '../services/models';
 import CardComponent from './CardComponent';
-import Footer from './Footer';
 import EditPopup from './EditPopup';
 import {
   getCards,
@@ -128,7 +127,6 @@ const MainPage: React.FC<MainPageProps> = () => {
           onUpdate={handleUpdateCard}
         />
       )}
-      <Footer />
     </div>
   );
 };
