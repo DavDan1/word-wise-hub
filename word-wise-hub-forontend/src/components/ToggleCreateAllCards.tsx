@@ -17,12 +17,18 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
   const [newCategory, setNewCategory] = useState('');
 
   const handleCreate = () => {
-    if (
-      newWord.trim() === '' ||
-      newDefinition.trim() === '' ||
-      newCategory.trim() === ''
-    ) {
-      console.error('Please fill in all fields.');
+    if (newWord.trim() === '') {
+      toast.error('Please enter a question.');
+      return;
+    }
+
+    if (newDefinition.trim() === '') {
+      toast.error('Please enter a definition.');
+      return;
+    }
+
+    if (newCategory.trim() === '') {
+      toast.error('Please enter a category.');
       return;
     }
 
@@ -89,15 +95,24 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
 
           <button
             onClick={handleCreate}
-            style={{ backgroundColor: '#5db075', color: '#ffffff' }}
+            style={{
+              backgroundColor: '#5db075',
+              color: '#ffffff',
+              boxShadow: '0 5px 10px rgba(0, 0, 0, 0.1)',
+            }}
           >
             Create Card
           </button>
-          <button onClick={handleCancel}>Cancel</button>
+          <button
+            style={{ boxShadow: '0 5px 10px rgba(0, 0, 0, 0.1)' }}
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
         </div>
       )}
       <div className="toggle-ctn-text">
-        <h2 className="username-text">Guest</h2>
+        <h2 className="username-text">Dav</h2>
         <p className="welcome-message">Welcome back!</p>
       </div>
     </div>
