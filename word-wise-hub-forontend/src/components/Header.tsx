@@ -1,13 +1,10 @@
 import React from 'react';
-import Logo from './Logo';
-import Auth from './Auth';
 import '../style/Header.css';
 
 const Header: React.FC = () => {
   return (
-    <div className="header-ctn ">
-      <Auth />
-      <Logo />
+    <div>
+      <img src={'../../public/navigation.svg'} alt="SVG Image" />
     </div>
   );
 };
