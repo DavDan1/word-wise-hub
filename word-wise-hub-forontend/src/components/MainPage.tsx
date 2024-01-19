@@ -11,6 +11,7 @@ import {
   deleteCard,
   createCard,
 } from '../services/apiServices';
+import '../style/MainPage.css';
 
 interface MainPageProps {}
 
