@@ -16,9 +16,13 @@ const Auth: React.FC = () => {
   return (
     <div className="auth-ctn">
       {isLoggedIn ? (
-        <Button onClick={handleLogout}>Logout</Button>
+        <Button onClick={handleLogout} className="login-btn">
+          Logout
+        </Button>
       ) : (
-        <Button onClick={handleLogin}>Login</Button>
+        <Button onClick={handleLogin} className="login-btn">
+          Login
+        </Button>
       )}
     </div>
   );
