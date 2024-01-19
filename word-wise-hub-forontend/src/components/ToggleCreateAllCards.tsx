@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import '../style/ToggleCreateAllCards.css';
 
 interface ToggleCreateAllCardsProps {
@@ -30,6 +31,8 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
     setNewDefinition('');
     setNewCategory('');
     setCreateMode(false);
+
+    toast.success('🎉 Card successfully created! 🌟');
   };
 
   const handleCancel = () => {
@@ -60,7 +63,6 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
 
       {isCreateMode && (
         <div className="create-card-form">
-          <label htmlFor="newWord"></label>
           <input
             placeholder="Question"
             type="text"
@@ -69,7 +71,6 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
             onChange={(e) => setNewWord(e.target.value)}
           />
 
-          <label htmlFor="newDefinition"></label>
           <input
             placeholder="Definition"
             type="text"
@@ -78,7 +79,6 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
             onChange={(e) => setNewDefinition(e.target.value)}
           />
 
-          <label htmlFor="newCategory"></label>
           <input
             placeholder="Category"
             type="text"
@@ -87,7 +87,12 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
             onChange={(e) => setNewCategory(e.target.value)}
           />
 
-          <button onClick={handleCreate}>Create Card</button>
+          <button
+            onClick={handleCreate}
+            style={{ backgroundColor: '#5db075', color: '#ffffff' }}
+          >
+            Create Card
+          </button>
           <button onClick={handleCancel}>Cancel</button>
         </div>
       )}
