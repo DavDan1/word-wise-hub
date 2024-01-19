@@ -1,9 +1,10 @@
-.edit-popup, .popup-content {
+.edit-popup,
+.popup-content {
   text-align: center;
   padding: 20px;
   background-color: #f6f6f6;
   border-radius: 10px;
-  width: 80%;
+  width: 60%;
   height: 200px;
   margin: 0 auto; /* Center horizontally with auto margins */
   position: absolute;
@@ -14,6 +15,34 @@
   flex-direction: column;
   justify-content: space-evenly;
   overflow-y: auto; /* Enable vertical scrolling if needed */
+  align-items: center;
+}
+.edit-popup input::placeholder {
+  text-align: center; /* Center the placeholder text */
+}
+
+.edit-popup input {
+  width: 60%;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #5db075;
+  text-align: center; /* Center the text inside input fields */
+  border: 0;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.edit-popup button {
+  border: 0;
+  border-radius: 10px;
+  margin-top: 5px;
+  width: 120px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.edit-popup-save {
+  background-color: #5db075;
+  color: #ffffff;
 }
 
 .input-label {
