@@ -1,4 +1,5 @@
 import './App.css';
+import Footer from './components/Footer';
 import MainPage from './components/MainPage';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <div>
         <MainPage />
+        <Footer />
       </div>
     </>
   );
