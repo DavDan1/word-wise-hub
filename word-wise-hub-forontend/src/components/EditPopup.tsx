@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import Button from './Button';
 import { CardModel } from '../services/models';
 import { updateCard, createCard } from '../services/apiServices';
@@ -12,9 +13,7 @@ interface EditPopupProps {
 
 const EditPopup: React.FC<EditPopupProps> = ({ card, onClose, onUpdate }) => {
   const [editedWord, setEditedWord] = useState(card?.question || '');
-  const [editedDefinition, setEditedDefinition] = useState(
-    card?.answer || '',
-  );
+  const [editedDefinition, setEditedDefinition] = useState(card?.answer || '');
   const [editedCategory, setEditedCategory] = useState(card?.category || '');
 
   const handleSave = async () => {
@@ -26,6 +25,7 @@ const EditPopup: React.FC<EditPopupProps> = ({ card, onClose, onUpdate }) => {
         answer: editedDefinition,
         category: editedCategory,
       });
+      toast.success('🚀 Card successfully updated! 🌈');
     } else {
       await createCard(editedWord, editedDefinition, editedCategory);
     }
@@ -59,7 +59,9 @@ const EditPopup: React.FC<EditPopupProps> = ({ card, onClose, onUpdate }) => {
           onChange={(e) => setEditedCategory(e.target.value)}
         />
       </label>
-      <Button onClick={handleSave}>Save</Button>
+      <Button className="edit-popup-save" onClick={handleSave}>
+        Save
+      </Button>
       <Button onClick={onClose}>Cancel</Button>
     </div>
   );
