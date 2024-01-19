@@ -5,17 +5,25 @@
 }
 
 .toggle-btn-active {
+  height: 40px;
+  width: 90px;
   background-color: #5db075;
   color: #ffffff;
   border: #5db075;
+  border: 1px solid #5db075;
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .toggle-btn-inactive {
+  height: 40px;
+  width: 90px;
   background-color: #e8e8e8;
   color: #bdbdbd;
+  border: 1px solid #5db075;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 0.25rem;
   border: #5db075;
   padding: 0.5rem 1rem;
@@ -27,7 +35,7 @@
   padding: 20px;
   background-color: #f6f6f6;
   border-radius: 10px;
-  width: 80%;
+  width: 60%;
   height: 200px;
   margin: 0 auto; /* Center horizontally with auto margins */
   position: absolute;
@@ -38,6 +46,29 @@
   flex-direction: column;
   justify-content: space-evenly;
   overflow-y: auto; /* Enable vertical scrolling if needed */
+  align-items: center;
+}
+
+.create-card-form input::placeholder {
+  text-align: center; /* Center the placeholder text */
+}
+.create-card-form input {
+  width: 60%;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #5db075;
+  text-align: center; /* Center the text inside input fields */
+  border: 0;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.create-card-form button {
+  border: 0;
+  border-radius: 10px;
+  margin-top: 5px;
+  width: 120px;
+  height: 30px;
+  cursor: pointer;
 }
 .toggle-ctn-text {
   align-items: center;
