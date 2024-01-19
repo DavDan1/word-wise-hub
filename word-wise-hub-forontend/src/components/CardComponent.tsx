@@ -89,7 +89,7 @@ const CardComponent: React.FC<CardProps> = ({
             style={{ width: '70%', padding: '10px', cursor: 'pointer' }}
           />
         </div>
-        <div className='delete-edit'>
+        <div className="delete-edit">
           <button className="edit-btn" onClick={() => onEdit(card)}>
             <img src={'../../public/pencil.svg'} alt="SVG Image" />
           </button>
