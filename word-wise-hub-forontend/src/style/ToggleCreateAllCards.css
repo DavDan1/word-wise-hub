@@ -7,6 +7,7 @@
 .toggle-btn-active {
   background-color: #5db075;
   color: #ffffff;
+  border: #5db075;
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
@@ -16,6 +17,7 @@
   background-color: #e8e8e8;
   color: #bdbdbd;
   border-radius: 0.25rem;
+  border: #5db075;
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
