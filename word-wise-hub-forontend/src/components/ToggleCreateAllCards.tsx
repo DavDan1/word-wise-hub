@@ -91,7 +91,7 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
           <button onClick={handleCancel}>Cancel</button>
         </div>
       )}
-      <div className='toggle-ctn-text'>
+      <div className="toggle-ctn-text">
         <h2 className="username-text">Guest</h2>
         <p className="welcome-message">Welcome back!</p>
       </div>
