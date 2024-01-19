@@ -1,8 +1,4 @@
-.main-page-ctn {
-  text-align: center;
-}
-
-.main-page-text {
-  display: flex;
+.main-page-body {
   justify-content: center;
+  text-align: center;
 }
