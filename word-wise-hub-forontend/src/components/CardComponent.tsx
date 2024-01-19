@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CardModel } from '../services/models';
+import { toast } from 'react-hot-toast';
 import '../style/Card.css';
 import DeleteConfirmationPopup from './DeleteConfirmationPopup';
 
@@ -39,9 +40,9 @@ const CardComponent: React.FC<CardProps> = ({
     const isCorrect = trimmedInput === trimmedAnswer;
 
     if (isCorrect) {
-      console.log('Correct answer!');
+      toast.success('Correct answer!');
     } else {
-      console.log('Wrong answer. Try again!');
+      toast.error('Wrong answer. Try again!');
     }
 
     setIsAnswerCorrect(isCorrect);
@@ -82,12 +83,9 @@ const CardComponent: React.FC<CardProps> = ({
             placeholder="Type your answer"
             onChange={handleInputValueChange}
           />
-          <img
-            onClick={handleClick}
-            src={'../../public/answer.svg'}
-            alt="SVG Image"
-            style={{ width: '70%', padding: '10px', cursor: 'pointer' }}
-          />
+          <button className="answer-btn" onClick={handleClick}>
+            Answer
+          </button>
         </div>
         <div className="delete-edit">
           <button className="edit-btn" onClick={() => onEdit(card)}>
