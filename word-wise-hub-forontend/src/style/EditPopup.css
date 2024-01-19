@@ -7,7 +7,7 @@
   width: 60%;
   height: 200px;
   margin: 0 auto; /* Center horizontally with auto margins */
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   top: 40%;
@@ -16,6 +16,7 @@
   justify-content: space-evenly;
   overflow-y: auto; /* Enable vertical scrolling if needed */
   align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .edit-popup input::placeholder {
   text-align: center; /* Center the placeholder text */
