@@ -34,7 +34,7 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
 
   const handleCancel = () => {
     setCreateMode(false);
-    onClose(); 
+    onClose();
   };
 
   return (
@@ -91,9 +91,10 @@ const ToggleCreateAllCards: React.FC<ToggleCreateAllCardsProps> = ({
           <button onClick={handleCancel}>Cancel</button>
         </div>
       )}
-
-      <h2 className="username-text">Guest</h2>
-      <p className="welcome-message">Welcome back!</p>
+      <div className='toggle-ctn-text'>
+        <h2 className="username-text">Guest</h2>
+        <p className="welcome-message">Welcome back!</p>
+      </div>
     </div>
   );
 };
