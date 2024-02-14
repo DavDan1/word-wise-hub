@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using Model;
 
 var builder = WebApplication.CreateBuilder(args);
+//var myApiKey = builder.Configuration["DefaultConnection"];
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -44,5 +45,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+//app.MapGet("/", () => myApiKey);
 
 app.Run();

@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>word_wise_hub_backend</RootNamespace>
+    <UserSecretsId>3db88d55-b9e1-497f-991d-879fe0f3a14c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
