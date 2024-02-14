@@ -1,0 +1,13 @@
+.logo-ctn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  background-color: aliceblue;
+  border-radius: 50px;
+}
+
+.logo-image {
+  max-height: 100%;
+  width: auto;
+}
